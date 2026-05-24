@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drawing Course - HobbyHub</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Arial, sans-serif;
+        }
+
+        body{
+            height:100vh;
+            background:linear-gradient(135deg, #a690e7, #dd9fec);
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            overflow:hidden;
+        }
+
+        .course-container{
+            width:90%;
+            max-width:1100px;
+            background:white;
+            border-radius:30px;
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+            padding:60px;
+            box-shadow:0 15px 40px rgba(0,0,0,0.2);
+            gap:50px;
+        }
+
+        .course-text{
+            flex:1;
+        }
+
+        .course-text h1{
+            font-size:55px;
+            color:#222;
+            margin-bottom:20px;
+            line-height:1.1;
+        }
+
+        .course-text p{
+            font-size:18px;
+            color:#666;
+            margin-bottom:35px;
+            line-height:1.6;
+        }
+
+        .course-text button{
+            background:#7f5af0;
+            color:white;
+            border:none;
+            padding:15px 35px;
+            border-radius:12px;
+            font-size:18px;
+            cursor:pointer;
+            transition:0.3s;
+            box-shadow:0 8px 20px rgba(127,90,240,0.3);
+        }
+
+        .course-text button:hover{
+            transform:translateY(-3px);
+            background:#6246ea;
+        }
+
+        .course-image{
+            flex:1;
+            display:flex;
+            justify-content:center;
+        }
+
+        .course-image img{
+            width:100%;
+            max-width:450px;
+            border-radius:25px;
+            object-fit:cover;
+            box-shadow:0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        @media(max-width:900px){
+
+            .course-container{
+                flex-direction:column;
+                text-align:center;
+                padding:40px 25px;
+            }
+
+            .course-text h1{
+                font-size:40px;
+            }
+
+            .course-image img{
+                max-width:320px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="course-container">
+
+        <div class="course-text">
+            <h1>Discover Your Creative Drawing Skills</h1>
+
+            <p>
+                Improve your creativity through fun drawing lessons,
+                simple techniques, and interactive quizzes designed
+                for beginners.
+            </p>
+
+            <a href="/quiz-drawing">
+                <button>Start Quiz</button>
+            </a>
+
+            <br><br>
+
+            <a href="/activities">
+                <button class="back-btn">Back to Activities</button>
+            </a>
+        </div>
+
+        <div class="course-image">
+            <img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6?q=80&w=1170&auto=format&fit=crop"  alt="Drawing">
+        </div>
+
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,231 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    background:linear-gradient(to right, #8e97b9, #fbcfe8, #9e8edf);
+}
+
+nav{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px 50px;
+    background:white;
+    box-shadow:0 2px 5px rgba(0,0,0,0.1);
+}
+
+nav h1{
+    color:#887cf6;
+}
+
+nav ul{
+    display:flex;
+    list-style:none;
+    gap:20px;
+}
+
+nav a{
+    text-decoration:none;
+    color:#333;
+    font-weight:bold;
+    transition:0.3s;
+}
+
+nav a:hover{
+    color:#887cf6;
+}
+
+.hero{
+    text-align:center;
+    padding:100px 20px;
+}
+
+.hero h2{
+    font-size:40px;
+    margin-bottom:20px;
+    color:#333;
+}
+
+.hero p{
+    font-size:18px;
+    color:#666;
+    margin-bottom:30px;
+}
+
+.hero button{
+    padding:12px 25px;
+    border:none;
+    background:#805c80;
+    color:white;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:16px;
+}
+
+.activity-container{
+    display:flex;
+    justify-content:center;
+    gap:30px;
+    flex-wrap:wrap;
+    margin-top:50px;
+}
+
+.activity-card{
+    background:white;
+    width:300px;
+    border-radius:15px;
+    overflow:hidden;
+    box-shadow:0 4px 10px rgba(0,0,0,0.1);
+    transition:0.3s;
+}
+
+.activity-card:hover{
+    transform:translateY(-5px);
+}
+
+.activity-card img{
+    width:100%;
+    height:200px;
+    object-fit:cover;
+}
+
+.activity-card h3{
+    padding:15px 20px 5px;
+    color:#333;
+}
+
+.activity-card p{
+    padding:0 20px;
+    color:#777;
+}
+
+.activity-card button{
+    margin:20px;
+    padding:10px 20px;
+    border:none;
+    background:#6c63ff;
+    color:white;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+.login-section{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:80vh;
+}
+
+.login-card{
+    background:white;
+    padding:40px;
+    width:350px;
+    border-radius:20px;
+    box-shadow:0 4px 15px rgba(0,0,0,0.1);
+    text-align:center;
+}
+
+.login-card h2{
+    color:#333;
+    margin-bottom:10px;
+}
+
+.login-card p{
+    color:#777;
+    margin-bottom:25px;
+}
+
+.login-card form{
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+}
+
+.login-card input{
+    padding:12px;
+    border:1px solid #ddd;
+    border-radius:10px;
+    outline:none;
+    font-size:15px;
+}
+
+.login-card button{
+    padding:12px;
+    border:none;
+    border-radius:10px;
+    background:#8b7cf6;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+}
+
+.signup-text{
+    font-size:14px;
+    color:#666;
+}
+
+.signup-text a{
+    color:#8b7cf6;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+.signup-text a:hover{
+    text-decoration:underline;
+}
+
+.categories{
+    padding:60px 20px;
+    text-align:center;
+}
+
+.categories h2{
+    margin-bottom:40px;
+    color:#333;
+}
+
+.category-container{
+    display:flex;
+    justify-content:center;
+    gap:25px;
+    flex-wrap:wrap;
+}
+
+.category-card{
+    background:white;
+    width:250px;
+    padding:25px;
+    border-radius:20px;
+    box-shadow:0 4px 10px rgba(0,0,0,0.1);
+    transition:0.3s;
+}
+
+.category-card:hover{
+    transform:translateY(-5px);
+}
+
+.category-card h3{
+    margin-bottom:15px;
+    color:#8b7cf6;
+}
+
+.category-card p{
+    color:#666;
+}
+
+.back-btn{
+    background:#da7bc5 !important;
+    width:auto !important;
+    padding:10px 20px !important;
+    font-size:10px !important;
+    border-radius:15px !important;
+    margin-top:15px !important;
+}
+
+.back-btn:hover{
+    background:#bb1d76 !important;
+}

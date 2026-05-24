@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Progress - HobbyHub</title>
+    <link rel="icon" href="data:,">
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Arial, sans-serif;
+        }
+
+        body{
+            min-height:100vh;
+            background:linear-gradient(135deg, #a998db, #c28ebf);
+            padding:40px;
+
+            display:flex;
+            flex-direction:column;
+        }
+
+        h1{
+            text-align:center;
+            color:white;
+            margin-bottom:40px;
+            font-size:50px;
+        }
+
+        #progress-container{
+            display:grid;
+            grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));
+            gap:25px;
+        }
+
+        .progress-card{
+            background:rgba(255,255,255,0.25);
+            backdrop-filter:blur(10px);
+            padding:30px;
+            border-radius:25px;
+            box-shadow:0 10px 25px rgba(0,0,0,0.2);
+            transition:0.3s;
+            color:white;
+        }
+
+        .progress-card:hover{
+            transform:translateY(-5px);
+        }
+
+        .progress-card h2{
+            margin-bottom:20px;
+            font-size:30px;
+        }
+
+        .progress-card p{
+            margin-bottom:12px;
+            font-size:18px;
+        }
+
+        .progress-nav{
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            padding:20px 35px;
+            margin-bottom:40px;
+
+            background:rgba(255,255,255,0.2);
+            backdrop-filter:blur(10px);
+
+            border-radius:20px;
+        }
+
+        .progress-nav h2{
+            color:white;
+            font-size:30px;
+        }
+
+        .progress-nav ul{
+            display:flex;
+            gap:30px;
+            list-style:none;
+        }
+
+        .progress-nav a{
+            text-decoration:none;
+            color:white;
+            font-size:18px;
+            transition:0.3s;
+        }
+
+        .progress-nav a:hover{
+            opacity:0.8;
+        }
+
+        .summary-card{
+            width:400px;
+            margin:0 auto 10px auto;
+
+            background:rgba(255,255,255,0.25);
+            padding:25px;
+
+            border-radius:25px;
+            color:white;
+            text-align:center;
+
+            box-shadow:0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .summary-card h2{
+            margin-bottom:12px;
+            font-size:28px;
+        }
+
+        footer{
+            text-align:center;
+            margin-top:auto;
+            padding-top: 40px;
+            color:white;
+            font-size:16px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <nav class="progress-nav">
+
+        <h2>HobbyHub</h2>
+
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/activities">Activities</a></li>
+            <li><a href="/login">Login</a></li>
+        </ul>
+
+    </nav>
+
+    <h1>Your Progress</h1>
+
+    <div id="progress-container"></div>
+
+    <script>
+
+        let activities = [
+            "drawing",
+            "coloring",
+            "cooking",
+            "diy",
+            "music",
+            "reading",
+            "workout"
+        ];
+
+        let output = "";
+
+        let completedCount = 0;
+        let totalScore = 0;
+
+        activities.forEach(activity => {
+
+            let data = JSON.parse(localStorage.getItem(activity));
+
+            if (data) {
+
+                completedCount++;
+                totalScore += data.score;
+
+                let stars = "";
+
+                for (let i = 0; i < 5; i++) {
+                    stars += i < data.stars ? "⭐" : "☆";
+                }
+
+                output += `
+                    <div class="progress-card">
+
+                        <h2>
+
+                            ${
+                                activity === "drawing" ? "🎨 Drawing" :
+                                activity === "coloring" ? "🖍️ Coloring" :
+                                activity === "cooking" ? "🍳 Cooking" :
+                                activity === "diy" ? "✂️ DIY Crafts" :
+                                activity === "music" ? "🎵 Music" :
+                                activity === "reading" ? "📚 Reading" :
+                                activity === "workout" ? "🏋️ Workout" :
+                                activity
+                            }
+                        </h2>
+
+                        <p>Score: ${data.score}%</p>
+
+                        <p>Stars: ${stars}</p>
+
+                        <p>Status: ${data.status}</p>
+
+                    </div>
+                `;
+            }
+        });
+
+        // If no activities completed
+        if (output === "") {
+
+            output = `
+                <div class="progress-card">
+                    <h2>No Progress Yet 🚀</h2>
+                    <p>Complete quizzes to track your activities.</p>
+                </div>
+            `;
+        }
+
+        let average = completedCount > 0
+            ? (totalScore / completedCount).toFixed(1)
+            : 0;
+
+        output = `
+
+            <div class="summary-card">
+
+                <h2>Progress Summary 🚀</h2>
+                <p>Activities Completed: ${completedCount}</p>
+                <p>Average Score: ${average}%</p>
+
+            </div>
+
+        ` + output;
+
+        // Show on page
+            document.getElementById("progress-container").innerHTML = output;
+
+    </script>
+
+    <footer>
+        <p>© 2026 HobbyHub. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drawing Quiz - HobbyHub</title>
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Arial, sans-serif;
+        }
+
+        body{
+            min-height:100vh;
+            background:linear-gradient(135deg, #a998db, #c28ebf);
+            display:flex;
+            justify-content:center;
+            align-items:flex-start;
+            padding:20px;
+            padding-top: 40px;
+            padding-bottom: 40px;
+        }
+
+        .quiz-container{
+            background: rgba(255, 255, 255, 0.37);
+            width:100%;
+            max-width:700px;
+            padding:50px;
+            border-radius:25px;
+            box-shadow:0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .quiz-container h1{
+            text-align:center;
+            color:#222;
+            margin-bottom:35px;
+            font-size:45px;
+        }
+
+        .quiz-box{
+            margin-bottom:30px;
+            padding:20px;
+            background:#e4dcdc;
+            border-radius:15px;
+        }
+
+        .quiz-box p{
+            font-size:20px;
+            margin-bottom:15px;
+            color:#333;
+            font-weight:bold;
+        }
+
+        .quiz-box label{
+            display:block;
+            margin-bottom:12px;
+            font-size:18px;
+            color:#555;
+            cursor:pointer;
+        }
+
+        input[type="radio"]{
+            margin-right:10px;
+        }
+
+        button{
+            width:100%;
+            padding:15px;
+            border:none;
+            background:#7f5af0;
+            color:white;
+            font-size:18px;
+            border-radius:12px;
+            cursor:pointer;
+            transition:0.3s;
+        }
+
+        button:hover{
+            background:#6246ea;
+            transform:translateY(-2px);
+        }
+
+        .result-link{
+            display:block;
+            background:#7f5af0;
+            color:white;
+            text-decoration:none;
+            padding:15px;
+            border-radius:12px;
+            text-align:center;
+            transition:0.3s;
+        }
+
+        .result-link:hover{
+            background:#6246ea;
+            transform:translateY(-2px);
+        }
+
+        .result-buttons{
+            margin-top:20px;
+            display:flex;
+            flex-direction:column;
+            gap:15px;
+        }
+
+        .result-buttons button{
+        width:100%;
+        }
+
+        .back-btn{
+            display:block;
+            text-align:center;
+            background:#d67ac5;
+            color:white;
+            text-decoration:none;
+            padding:14px;
+            border-radius:12px;
+            transition:0.3s;
+        }
+
+        .back-btn:hover{
+            background:#bb5aa8;
+        }
+
+        #result{
+            margin-top:30px;
+            text-align:center;
+            font-size:22px;
+            color:#333;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="quiz-container">
+
+        <h1>🎨 Drawing Quiz</h1>
+
+        <!-- Question 1 -->
+        <div class="quiz-box">
+            <p>1. What is used to draw lines?</p>
+
+            <label>
+                <input type="radio" name="q1" value="correct">
+                Pencil
+            </label>
+
+            <label>
+                <input type="radio" name="q1" value="wrong">
+                Paint
+            </label>
+        </div>
+
+        <!-- Question 2 -->
+        <div class="quiz-box">
+            <p>2. Which tool is used for coloring?</p>
+
+            <label>
+                <input type="radio" name="q2" value="wrong">
+                Ruler
+            </label>
+
+            <label>
+                <input type="radio" name="q2" value="correct">
+                Color Pencil
+            </label>
+        </div>
+
+        <!-- Question 3 -->
+        <div class="quiz-box">
+            <p>3. What helps make straight lines?</p>
+
+            <label>
+                <input type="radio" name="q3" value="correct">
+                Ruler
+            </label>
+
+            <label>
+                <input type="radio" name="q3" value="wrong">
+                Eraser
+            </label>
+        </div>
+
+        <button onclick="submitQuiz()">Submit Quiz</button>
+
+        <br><br>
+
+        <a href="/activities" class="back-btn">
+            ← Back to Activities
+        </a>
+
+        <div id="result"></div>
+
+    </div>
+
+    <script>
+
+        function getStars(score) {
+            if (score === 100) return 5;
+            if (score >= 80) return 4;
+            if (score >= 60) return 3;
+            if (score >= 40) return 2;
+            if (score > 0) return 1;
+            return 0;
+        }
+
+        function submitQuiz() {
+
+            let correct = 0;
+            let total = 3;
+
+            let q1 = document.querySelector('input[name="q1"]:checked');
+            if (q1 && q1.value === "correct") {
+                correct++;
+            }
+
+            let q2 = document.querySelector('input[name="q2"]:checked');
+            if (q2 && q2.value === "correct") {
+                correct++;
+            }
+
+            let q3 = document.querySelector('input[name="q3"]:checked');
+            if (q3 && q3.value === "correct") {
+                correct++;
+            }
+
+            let score = (correct / total) * 100;
+
+            let stars = getStars(score);
+
+            let starDisplay = "";
+
+            for (let i = 0; i < 5; i++) {
+                starDisplay += i < stars ? "⭐" : "☆";
+            }
+
+            let data = {
+                score: score,
+                stars: stars,
+                status: "completed"
+            };
+
+            localStorage.setItem("drawing", JSON.stringify(data));
+
+            document.getElementById("result").innerHTML = `
+                
+                <h2>Quiz Result 🎉</h2>
+                <p>Score: ${score}%</p>
+                <p>${starDisplay}</p>
+
+                <br>
+
+                <div class="result-buttons">
+
+                    <a href="/progress" class="result-link">
+                        View Progress
+                    </a>
+
+                    <a href="/activities" class="result-link">
+                        Try Another Activity
+                    </a>
+
+                </div>
+
+            `;
+
+        }
+
+    </script>
+
+</body>
+</html>
