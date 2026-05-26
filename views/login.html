@@ -27,10 +27,11 @@
             <h2>Welcome Back</h2>
             <p>Login to continue exploring hobbies.</p>
 
-            <form>
-                <input type="email" placeholder="Enter your email">
-                <input type="password" placeholder="Enter your password">
+            <form id="loginForm">
+                <input type="email" id="email" placeholder="Enter your email" required>
+                <input type="password" id="password" placeholder="Enter your password" required>
                 <button type="submit">Login</button>
+                <p id="message" style="color: red; margin-top: 10px;"></p>
 
                 <p class="signup-text">
                     Don't have an account?
@@ -42,5 +43,44 @@
 
     </section>
 
+    <script>
+        const form = document.getElementById('loginForm');
+        const messageEl = document.getElementById('message');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            try {
+                const response = await fetch('/api/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ email, password })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    messageEl.textContent = 'Login successful! Redirecting...';
+                    messageEl.style.color = 'green';
+                    setTimeout(() => {
+                        window.location.href = '/';
+                    }, 1500);
+                } else {
+                    messageEl.textContent = data.message || 'Login failed!';
+                    messageEl.style.color = 'red';
+                }
+            } catch (error) {
+                messageEl.textContent = 'An error occurred. Please try again.';
+                messageEl.style.color = 'red';
+            }
+        });
+    </script>
+
+    <script src="/js/navbar.js"></script>
 </body>
 </html>
