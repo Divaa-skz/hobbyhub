@@ -1,0 +1,10 @@
+name = "hobbyhub"
+main = "src/index.js" 
+compatibility_date = "2026-01-01"
+
+# If using Pages, you may not need `main`; Pages uses functions directory.
+
+# D1 binding
+[[d1_databases]]
+binding = "DB"
+database_name = "users-db"
