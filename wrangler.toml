@@ -1,10 +1,11 @@
 name = "hobbyhub"
-main = "src/index.js" 
+main = "src/index.js"
 compatibility_date = "2026-01-01"
 
-# If using Pages, you may not need `main`; Pages uses functions directory.
+account_id = "d4e9050cb053c0bfd945fc9c36d7366a"   # <-- paste from Cloudflare Dashboard
 
 # D1 binding
 [[d1_databases]]
-binding = "DB"
-database_name = "users-db"
+binding = "hobby_app_db"
+database_name = "hobby_app_db"
+database_id = "159465ca-9f18-42df-ad04-7a5d69b19f45"
