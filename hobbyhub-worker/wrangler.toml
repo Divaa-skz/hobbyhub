@@ -1,0 +1,8 @@
+name = "hobbyhub-worker"
+main = "src/index.ts"
+compatibility_date = "2026-06-07"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "hobbyhub-db"
+database_id = "2840edea-ab21-4541-86d6-673aa3635fca"
